@@ -54,20 +54,20 @@
     margin-top: 5rem;
 }
 
-.taskList div{
+.taskList header div{
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
-.taskList div:nth-of-type(1) p {
+.taskList header div:nth-of-type(1) p {
     color: var(--blue);
 
     font-size: 1rem;
     font-weight: bold;
 }
 
-.taskList div:nth-of-type(1) span {
+.taskList header div:nth-of-type(1) span {
     color: var(--gray-200);
     background-color: var(--gray-400);
 
@@ -79,14 +79,14 @@
     padding: 0.25rem 0.5rem;
 }
 
-.taskList div:nth-of-type(2) p {
+.taskList header div:nth-of-type(2) p {
     color: var(--purple);
 
     font-size: 1rem;
     font-weight: bold;
 }
 
-.taskList div:nth-of-type(2) span {
+.taskList header div:nth-of-type(2) span {
     color: var(--gray-200);
     background-color: var(--gray-400);
 
@@ -104,4 +104,57 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+
+
+.tasks {
+    margin-top: 1.5rem;
+}
+
+
+
+.noTask {
+    padding: 4rem 1.5rem;
+
+    border-top: 1px solid var(--gray-300);
+    border-radius: 8px;
+
+    text-align: center;
+}
+
+.noTask p {
+    font-size: 1rem;
+}
+
+.noTask p:nth-of-type(1) {
+    font-weight: bold;
+
+    margin-top: 0.5rem;
+}
+
+
+
+.taskSingle {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+
+    margin-top: 1.5rem;
+    padding: 1rem;
+
+    background-color: var(--gray-500);
+
+    border: 1px solid var(--gray-400);
+    border-radius: 8px;
+
+    color: var(--gray-100);
+}
+
+.taskSingle button {
+    background-color: transparent;
+    border: 0;
+
+    color: var(--gray-300);
 }
