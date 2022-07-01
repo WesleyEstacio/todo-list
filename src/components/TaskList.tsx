@@ -25,7 +25,7 @@ export function TaskList() {
         setTasks(task => [...task, newTask])
         setNewTaskTitle('')
     }
-
+ 
     return (
         <div className={styles.container}>
             <section className={styles.newTask}>
@@ -57,34 +57,21 @@ export function TaskList() {
                     </div>
                 </header>
 
-
                 <section className={styles.tasks}>
-                    {/* <div className={styles.noTask}>
+                    <div className={styles.noTask}>
                         <Clipboard size={56} />
                         <p>Você ainda não tem tarefas cadastradas</p>
                         <p>Crie tarefas e organize seus itens a fazer</p>
-                    </div> */}
-
+                    </div>
+                        
                     <article className={styles.taskSingle}>
-                        <input type="checkbox" />
+                        <input 
+                            type="checkbox" 
+                        />
                         <p>Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.</p>
-                        <button>
-                            <Trash size={14} />
-                        </button>
-                    </article>
-
-                    <article className={styles.taskSingle}>
-                        <input type="checkbox" />
-                        <p>Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.</p>
-                        <button>
-                            <Trash size={14} />
-                        </button>
-                    </article>
-
-                    <article className={styles.taskSingle}>
-                        <input type="checkbox" />
-                        <p>Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.</p>
-                        <button>
+                        <button
+                            type='button'
+                        >
                             <Trash size={14} />
                         </button>
                     </article>
