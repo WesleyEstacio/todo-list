@@ -1,5 +1,5 @@
 import { PlusCircle, Clipboard, Trash } from 'phosphor-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import styles from './TaskList.module.css'
 
@@ -12,6 +12,17 @@ interface Task {
 export function TaskList() {
     const [tasks,setTasks] = useState<Task[]>([])
     const [newTaskTitle,setNewTaskTitle] = useState('')
+    const [haveTasks, setHaveTasks] = useState(false)
+
+    const HAVE_TASKS = tasks.length === 0    
+
+
+    
+    useEffect(() => {
+        HAVE_TASKS ? setHaveTasks(false) : setHaveTasks(true)
+    }, [tasks]) // Verificar se existem tasks
+
+
 
     function handleCreateNewTask() {
         if(!newTaskTitle) return
@@ -24,14 +35,16 @@ export function TaskList() {
 
         setTasks(oldState => [...oldState, newTask])
         setNewTaskTitle('')
-    }
+    }   // Criar nova Task
 
     function handleRemoveTask(id: number) {
         const filteredTasks = tasks.filter(task => task.id != id)
 
         setTasks(filteredTasks)
-    }
+    }   //Remover uma Task
  
+
+    
     return (
         <div className={styles.container}>
             <section className={styles.newTask}>
@@ -64,11 +77,15 @@ export function TaskList() {
                 </header>
 
                 <section className={styles.tasks}>
-                    <div className={styles.noTask}>
-                        <Clipboard size={56} />
-                        <p>Você ainda não tem tarefas cadastradas</p>
-                        <p>Crie tarefas e organize seus itens a fazer</p>
-                    </div>
+                    {!haveTasks ? 
+                        <div className={styles.noTask}>
+                            <Clipboard size={56} />
+                            <p>Você ainda não tem tarefas cadastradas</p>
+                            <p>Crie tarefas e organize seus itens a fazer</p>
+                        </div>
+                    :
+                        null
+                    }
                         
                     {tasks.map(task => (
                         <article className={styles.taskSingle}>
