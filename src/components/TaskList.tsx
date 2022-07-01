@@ -22,8 +22,14 @@ export function TaskList() {
             isComplete: false
         }
 
-        setTasks(task => [...task, newTask])
+        setTasks(oldState => [...oldState, newTask])
         setNewTaskTitle('')
+    }
+
+    function handleRemoveTask(id: number) {
+        const filteredTasks = tasks.filter(task => task.id != id)
+
+        setTasks(filteredTasks)
     }
  
     return (
@@ -64,17 +70,20 @@ export function TaskList() {
                         <p>Crie tarefas e organize seus itens a fazer</p>
                     </div>
                         
-                    <article className={styles.taskSingle}>
-                        <input 
-                            type="checkbox" 
-                        />
-                        <p>Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.</p>
-                        <button
-                            type='button'
-                        >
-                            <Trash size={14} />
-                        </button>
-                    </article>
+                    {tasks.map(task => (
+                        <article className={styles.taskSingle}>
+                            <input 
+                                type="checkbox" 
+                            />
+                            <p>{task.title}</p>
+                            <button
+                                type='button'
+                                onClick={() => handleRemoveTask(task.id)}
+                            >
+                                <Trash size={14} />
+                            </button>
+                        </article>
+                    ))}
                 </section>
             </main>
         </div>
