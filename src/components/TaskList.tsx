@@ -1,18 +1,44 @@
 import { PlusCircle, Clipboard, Trash } from 'phosphor-react'
+import { useState } from 'react'
 
 import styles from './TaskList.module.css'
 
+interface Task {
+    id: number;
+    title: string;
+    isComplete: boolean;
+}
+
 export function TaskList() {
+    const [tasks,setTasks] = useState<Task[]>([])
+    const [newTaskTitle,setNewTaskTitle] = useState('')
+
+    function handleCreateNewTask() {
+        if(!newTaskTitle) return
+
+        const newTask = {
+            id: Math.random(),
+            title: newTaskTitle,
+            isComplete: false
+        }
+
+        setTasks(task => [...task, newTask])
+        setNewTaskTitle('')
+    }
+
     return (
         <div className={styles.container}>
             <section className={styles.newTask}>
                 <input 
                     type="text" 
                     placeholder="Adicione uma nova tarefa"
+                    onChange={(e) => setNewTaskTitle(e.target.value)}
+                    value={newTaskTitle}
                 />
 
                 <button
-                    type='submit'              
+                    type='submit'
+                    onClick={handleCreateNewTask}
                 >
                     Criar <PlusCircle />
                 </button>
@@ -27,7 +53,7 @@ export function TaskList() {
 
                     <div>
                         <p>Concluídas</p>
-                        <span>0</span>
+                        <span>0 de 3</span>
                     </div>
                 </header>
 
