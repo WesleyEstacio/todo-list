@@ -17,6 +17,21 @@ export function TaskList() {
                     Criar <PlusCircle />
                 </button>
             </section> 
+
+            <main className={styles.taskList}>
+                <header className={styles.taskInfo}>
+                    <div>
+                        <p>Tarefas criadas</p>
+                        <span>0</span>
+                    </div>
+
+                    <div>
+                        <p>Concluídas</p>
+                        <span>0</span>
+                    </div>
+                </header>
+
+            </main>
         </div>
     )
 }

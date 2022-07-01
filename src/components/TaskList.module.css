@@ -3,6 +3,8 @@
     margin: 0 auto;
 }
 
+
+
 .newTask {
     display: grid;
     grid-template-columns: 3fr 0.5fr;
@@ -44,4 +46,62 @@
 
 .newTask button:hover {
     filter: brightness(0.9)
+}
+
+
+
+.taskList {
+    margin-top: 5rem;
+}
+
+.taskList div{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.taskList div:nth-of-type(1) p {
+    color: var(--blue);
+
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.taskList div:nth-of-type(1) span {
+    color: var(--gray-200);
+    background-color: var(--gray-400);
+
+    border-radius: 8px;
+
+    font-size: 0.75rem;
+    font-weight: bold;
+
+    padding: 0.25rem 0.5rem;
+}
+
+.taskList div:nth-of-type(2) p {
+    color: var(--purple);
+
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.taskList div:nth-of-type(2) span {
+    color: var(--gray-200);
+    background-color: var(--gray-400);
+
+    border-radius: 8px;
+
+    font-size: 0.75rem;
+    font-weight: bold;
+
+    padding: 0.25rem 0.5rem;
+}
+
+
+
+.taskInfo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
