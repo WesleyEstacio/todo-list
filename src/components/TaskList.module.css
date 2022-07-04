@@ -152,6 +152,10 @@
     color: var(--gray-100);
 }
 
+.taskSingle:last-child {
+    margin-bottom: 1.5rem;
+}
+
 .taskSingle p {
     max-width: 100%;
     overflow: hidden;
