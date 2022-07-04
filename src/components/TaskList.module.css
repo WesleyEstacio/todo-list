@@ -152,9 +152,23 @@
     color: var(--gray-100);
 }
 
+.taskSingle p {
+    max-width: 100%;
+    overflow: hidden;
+    line-break: normal;
+    font-size: 0.875rem;
+}
+
 .taskSingle button {
     background-color: transparent;
     border: 0;
 
     color: var(--gray-300);
 }
+
+.checked {
+    text-decoration: line-through;
+    color: var(--gray-300);
+    line-height: 1.4;
+}
+

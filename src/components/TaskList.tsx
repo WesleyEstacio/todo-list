@@ -13,14 +13,21 @@ export function TaskList() {
     const [tasks,setTasks] = useState<Task[]>([])
     const [newTaskTitle,setNewTaskTitle] = useState('')
     const [haveTasks, setHaveTasks] = useState(false)
+    const [allTasks, setAllTasks] = useState(0)
+    const [completedTasks, setCompletedTasks] = useState(0)
 
-    const HAVE_TASKS = tasks.length === 0    
-
+    const HAVE_TASKS = tasks.length === 0
+    
 
     
     useEffect(() => {
-        HAVE_TASKS ? setHaveTasks(false) : setHaveTasks(true)
-    }, [tasks]) // Verificar se existem tasks
+        HAVE_TASKS ? setHaveTasks(false) : setHaveTasks(true)   // Verificar se existem tasks
+
+        setAllTasks(tasks.length)   // Verificar quantas tasks tem na aplicalção
+
+        const filteredTasks = tasks.filter(task => task.isComplete != false)
+        setCompletedTasks(filteredTasks.length)    // Verificar quantas tasks foram concluidas
+    }, [tasks])
 
 
 
@@ -42,8 +49,17 @@ export function TaskList() {
 
         setTasks(filteredTasks)
     }   //Remover uma Task
- 
 
+    function handleToggleTaskCompletion(id: number) {
+        const newTasks = tasks.map(task => task.id == id ? {
+          ...task,
+          isComplete: !task.isComplete
+        } : task)
+    
+        setTasks(newTasks)
+      } // Verifica se a task ja foi concluida
+ 
+    
     
     return (
         <div className={styles.container}>
@@ -67,12 +83,12 @@ export function TaskList() {
                 <header className={styles.taskInfo}>
                     <div>
                         <p>Tarefas criadas</p>
-                        <span>0</span>
+                        <span>{ allTasks }</span>
                     </div>
 
                     <div>
                         <p>Concluídas</p>
-                        <span>0 de 3</span>
+                        <span>{`${completedTasks} de ${allTasks}`}</span>
                     </div>
                 </header>
 
@@ -90,9 +106,12 @@ export function TaskList() {
                     {tasks.map(task => (
                         <article className={styles.taskSingle}>
                             <input 
-                                type="checkbox" 
+                                type="checkbox"
+                                readOnly
+                                checked={task.isComplete}
+                                onClick={() => handleToggleTaskCompletion(task.id)}
                             />
-                            <p>{task.title}</p>
+                            <p className={task.isComplete === true ? styles.checked : ''}>{task.title}</p>
                             <button
                                 type='button'
                                 onClick={() => handleRemoveTask(task.id)}
